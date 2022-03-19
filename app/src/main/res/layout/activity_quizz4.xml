@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Quizz_4"
+    android:orientation="vertical"
+    android:layout_margin="35dp">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/q4"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="En tant qu'automobiliste, vous devez être plus vigilant lorsque :"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:layout_gravity="left"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etQbutton7"
+        android:text="A > Le tramway est arreté"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etQbutton8"
+        android:text="B > Le tramway circule"/>
+
+</LinearLayout>
