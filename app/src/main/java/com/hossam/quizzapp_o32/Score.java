@@ -7,14 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Score extends AppCompatActivity {
     //Set 1 : Declaration
-    Button etRetry, etQuit;
-    TextView etscore;
-
-    //int score = 5;
+    Button bLogout, bTry;
+    ProgressBar progressBar;
+    TextView tvScore;
+    int score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,28 +24,31 @@ public class Score extends AppCompatActivity {
         setContentView(R.layout.activity_score);
 
         //Set 2 : Recuperation des Id
-        etRetry = (Button) findViewById(R.id.etRetry);
-        etQuit = (Button) findViewById(R.id.etQuit);
-        etscore = (TextView) findViewById(R.id.etscore);
+        bTry = (Button) findViewById(R.id.bTry);
+        bLogout = (Button) findViewById(R.id.bLogout);
+        tvScore = (TextView) findViewById(R.id.tvScore);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        Intent intent=getIntent();
 
-        etscore.setText("Score : " +GlobalVariable.count + "/20");
+        score=intent.getIntExtra("score",0) ;
+        progressBar.setProgress(100*score/4);
+        tvScore.setText(100*score/4+" %");
 
         //Set 3 : Association des listeners
-        etRetry.setOnClickListener(new View.OnClickListener() {
+        bTry.setOnClickListener(new View.OnClickListener() {
             //Set 4 : Treatment
             @Override
             public void onClick(View view) {
-                GlobalVariable.count = 0;
                 startActivity(new Intent(Score.this,Quizz_1.class));
+                finish();
             }
         });
 
-        etQuit.setOnClickListener(new View.OnClickListener() {
+        bLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                moveTaskToBack(true);
-                android.os.Process.killProcess(android.os.Process.myPid());
-                System.exit(1);
+                startActivity(new Intent(Score.this,MainActivity.class));
+                finish();
             }
         });
 

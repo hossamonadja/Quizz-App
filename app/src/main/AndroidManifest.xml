@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hossam.quizzapp_o32">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/license"
@@ -16,13 +18,13 @@
             android:name=".Quizz_4"
             android:exported="false" />
         <activity
-            android:name=".Quizz_1"
-            android:exported="false" />
-        <activity
             android:name=".Quizz_3"
             android:exported="false" />
         <activity
             android:name=".Quizz_2"
+            android:exported="false" />
+        <activity
+            android:name=".Quizz_1"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"

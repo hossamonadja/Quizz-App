@@ -6,12 +6,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class Quizz_1 extends AppCompatActivity {
     //Set 1 : Declaration
-    Button etQbutton, etQbutton2;
+    Button bNext;
+    RadioGroup rg;
+    RadioButton rb;
+    int score=0;
+    String RepCorrect="Non";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,26 +25,30 @@ public class Quizz_1 extends AppCompatActivity {
         setContentView(R.layout.activity_quizz1);
 
         //Set 2 : Recuperation des Id
-        etQbutton = (Button) findViewById(R.id.etQbutton);
-        etQbutton2 = (Button) findViewById(R.id.etQbutton2);
+        rg = (RadioGroup) findViewById(R.id.rg);
+        bNext=(Button) findViewById(R.id.bNext);
 
         //Set 3 : Association des listeners
-        etQbutton.setOnClickListener(new View.OnClickListener() {
-            //Set 4 : Treatment
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(Quizz_1.this, "Mauvaise réponse", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(Quizz_1.this,Quizz_2.class));
-            }
-        });
 
-        etQbutton2.setOnClickListener(new View.OnClickListener() {
-            //Set 4 : Treatment
+        bNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                GlobalVariable.count+=5;
-                Toast.makeText(Quizz_1.this, "Bonne réponse", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(Quizz_1.this,Quizz_2.class));
+                if (rg.getCheckedRadioButtonId()==-1){
+                    Toast.makeText(getApplicationContext(), "Merci de choisir une réponse svp !", Toast.LENGTH_SHORT).show();
+                }
+
+                else {
+                    //Set 3 : Association des listeners
+                    rb = (RadioButton) findViewById(rg.getCheckedRadioButtonId());
+                    if (rb.getText().toString().equals(RepCorrect)){
+                        score+=1;
+                    }
+                    Intent intent = new Intent(Quizz_1.this,Quizz_2.class);
+                    intent.putExtra("score",score);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.exit,R.anim.entry);
+                    finish();
+                }
             }
         });
     }
